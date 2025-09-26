@@ -1,24 +1,7 @@
+// DogLink.tsx
 import Image from "next/image";
 import Link from "next/link";
-
-type ContentfulImage = {
-  fields: {
-    file: {
-      url: string;
-    };
-  };
-};
-
-type Dog = {
-  sys: {
-    id: string;
-  };
-  fields: {
-    name: string;
-    description?: string;
-    image?: ContentfulImage[];
-  };
-};
+import { Dog } from "../../types"; // import from single source
 
 type DogLinkProps = {
   dogs: Dog[];
