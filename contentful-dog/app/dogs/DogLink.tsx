@@ -1,7 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function DogLink({ dogs }: { dogs: any[] }) {
+type ContentfulImage = {
+  fields: {
+    file: {
+      url: string;
+    };
+  };
+};
+
+type Dog = {
+  sys: {
+    id: string;
+  };
+  fields: {
+    name: string;
+    description?: string;
+    image?: ContentfulImage[];
+  };
+};
+
+type DogLinkProps = {
+  dogs: Dog[];
+};
+
+export default function DogLink({ dogs }: DogLinkProps) {
   return (
     <main className="p-8 grid gap-6 md:grid-cols-3">
       {dogs.map((dog) => {

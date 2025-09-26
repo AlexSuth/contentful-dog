@@ -4,13 +4,25 @@ import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
-export default function DogGallery({ images }: { images: any[] }) {
+type ContentfulImage = {
+  fields: {
+    file: {
+      url: string;
+    };
+  };
+};
+
+type DogGalleryProps = {
+  images: ContentfulImage[];
+};
+
+export default function DogGallery({ images }: DogGalleryProps) {
   const [open, setOpen] = useState(false);
   const [currentImages, setCurrentImages] = useState<{ src: string }[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleImageClick = (images: any[], index = 0) => {
-    const formattedImages = images.map((img: any) => ({
+  const handleImageClick = (images: ContentfulImage[], index = 0) => {
+    const formattedImages = images.map((img) => ({
       src: "https:" + img.fields.file.url,
     }));
     setCurrentImages(formattedImages);
